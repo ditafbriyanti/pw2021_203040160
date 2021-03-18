@@ -40,7 +40,7 @@
                     <hr>
                     <ol>
                             <?php 
-                            echo "<h1>Daftar pemain bola baru</h1>";
+                            echo "<h1>Daftar pemain bola terkenal baru</h1>";
                                 for ($i=0; $i < count($pemain); $i++) {
                                     echo "<li>$pemain[$i]</li>";
                                 }
