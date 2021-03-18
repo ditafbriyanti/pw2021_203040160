@@ -37,8 +37,102 @@
             </tr>
 
             <tr>
-                <td></td>
+                <td>1</td>
+                <td><?php echo $cha[0][0] ?></td>
+                <td><?php echo $cha[0][1] ?></td>
+                <td><?php echo $cha[0][2] ?></td>
+                <td><?php echo $cha[0][3] ?></td>
+                <td><?php echo $cha[0][4] ?></td>
             </tr>
 
+            <tr>
+                <td>2</td>
+                <td><?php echo $cha[1][0] ?></td>
+                <td><?php echo $cha[1][1] ?></td>
+                <td><?php echo $cha[1][2] ?></td>
+                <td><?php echo $cha[1][3] ?></td>
+                <td><?php echo $cha[1][4] ?></td>
+            </tr>
+
+            <tr>
+                <td>3</td>
+                <td><?php echo $cha[2][0] ?></td>
+                <td><?php echo $cha[2][1] ?></td>
+                <td><?php echo $cha[2][2] ?></td>
+                <td><?php echo $cha[2][3] ?></td>
+                <td><?php echo $cha[2][4] ?></td>
+            </tr>
+
+            <tr>
+                <td>4</td>
+                <td><?php echo $cha[3][0] ?></td>
+                <td><?php echo $cha[3][1] ?></td>
+                <td><?php echo $cha[3][2] ?></td>
+                <td><?php echo $cha[3][3] ?></td>
+                <td><?php echo $cha[3][4] ?></td>
+            </tr>
+
+            <tr>
+                <td>5</td>
+                <td><?php echo $cha[4][0] ?></td>
+                <td><?php echo $cha[4][1] ?></td>
+                <td><?php echo $cha[4][2] ?></td>
+                <td><?php echo $cha[4][3] ?></td>
+                <td><?php echo $cha[4][4] ?></td>
+            </tr>
+
+            <tr>
+                <td>6</td>
+                <td><?php echo $cha[5][0] ?></td>
+                <td><?php echo $cha[5][1] ?></td>
+                <td><?php echo $cha[5][2] ?></td>
+                <td><?php echo $cha[5][3] ?></td>
+                <td><?php echo $cha[5][4] ?></td>
+            </tr>
+
+            <tr>
+                <td>7</td>
+                <td><?php echo $cha[6][0] ?></td>
+                <td><?php echo $cha[6][1] ?></td>
+                <td><?php echo $cha[6][2] ?></td>
+                <td><?php echo $cha[6][3] ?></td>
+                <td><?php echo $cha[6][4] ?></td>
+            </tr>
+
+            <tr>
+                <td>#</td>
+                <td colspan="2"><center>Jumlah</center></td>
+            <td> 
+                <?php 
+                    $total = 0;
+                    foreach ($cha as $item => $value) {
+                        $total += $value[2];
+                    }
+                    echo $total;
+                ?>
+            </td>
+
+            <td> 
+                <?php 
+                    $total = 0;
+                    foreach ($cha as $item => $value) {
+                        $total += $value[3];
+                    }
+                    echo $total;
+                ?>
+            </td>
+
+            <td> 
+                <?php 
+                    $total = 0;
+                    foreach ($cha as $item => $value) {
+                        $total += $value[4];
+                    }
+                    echo $total;
+                ?>
+            </td>
+            </tr>
         </table>
 </body>
+</html>
+
