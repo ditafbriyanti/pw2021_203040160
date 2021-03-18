@@ -30,7 +30,7 @@
             <tr>
                 <td><b>NO</b></td>
                 <td><b>NAMA</b></td>
-                <td><b>CLUB</b></td>
+                <td><b><center>CLUB</center></b></td>
                 <td><b>MAIN</b></td>
                 <td><b>GOL</b></td>
                 <td><b>ASSIST</b></td>
@@ -101,7 +101,7 @@
 
             <tr>
                 <td>#</td>
-                <td colspan="2"><b><center>Jumlah</center></b></td>
+                <td colspan="2"><center>Jumlah</center></td>
             <td> 
                 <?php 
                     $total = 0;
@@ -135,4 +135,3 @@
         </table>
 </body>
 </html>
-
