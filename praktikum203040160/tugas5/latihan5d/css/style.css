@@ -1,0 +1,17 @@
+body {
+    background: #FAF0E6;
+    font-family: roboto;
+    text-align: center;
+    color: #778899;
+}
+
+@font-face {
+    font-family: 'tulisan_keren';
+    src: url(TheStudentsTeacher-Regular.ttf);
+}
+
+tr {
+    font-family: 'tulisan_keren';
+    font-size: 15pt;
+    font-variant: inherit;
+}
