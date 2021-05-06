@@ -11,7 +11,7 @@ Mempelajari PHP & MySQL
 <?php
 
 // koneksi ke database
-$conn = mysqli_connect("localhost", "root", "", "phpdasar");
+$conn = mysqli_connect("localhost", "root", "", "");
 
 
 function query($query)
