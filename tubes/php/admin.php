@@ -2,78 +2,94 @@
 session_start();
 
 if (!isset($_SESSION["username"])) {
-  header("Location: login.php");
-  exit;
+    header("Location: login.php");
+    exit;
 }
+// menghubungkan dengan file php lainnya
 require 'functions.php';
-$food = query("SELECT * FROM food");
 
-if (isset($_POST['cari']))
-  $food = cari($_POST['keyword']);
-
+//ketika tombol cari di klik
+if (isset($_GET['cari'])) {
+    $keyword = $_GET['keyword'];
+    $food = query("SELECT * FROM food
+        WHERE
+      picture       LIKE '%$keyword%' OR
+      nama          LIKE '%$keyword%' OR
+      harga         LIKE '%$keyword%' OR
+      bahan_dasar   LIKE '%$keyword%' OR
+      deskripsi     LIKE '%$keyword%' 
+      ");
+} else {
+    $food = query("SELECT * FROM food");
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yujitaurant</title>
-  <link rel="icon" href="image/jpeg" href="../tubes/assets/img/yj.jpeg">
-  <link rel="stylesheet" href="../css/bootstrap.min.css">
-  <link rel="stylesheet" href="../js/bootstrap.min.js">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Admin | Yujitaurant</title>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- my icon -->
+    <link rel="icon" type="image/jpeg" href="assets/img/yj.jpeg">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 </head>
 
-<body style="background-color: #F6F3EE;">
-  <div class="container">
-    <nav class="navbar navbar-light" style="background-color:lightblue;">
-      <a class="navbar-brand">Halaman Admin</a>
-      <a class="nav-item nav-link" href="tambah.php">Tambah Menu</a>
-      <a class="nav-item nav-link" href="logout.php">Logout</a>
-      <form class="form-inline" action="" method="get">
-        <input class="form-control mr-sm-2" type="search" placeholder="cari" name="keyword">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="cari">Cari</button>
-      </form>
-    </nav>
-  </div>
+<body bgcolor="#D8BFD8">
+    <div class="container-lg">
+        <table border="1px" ; cellpadding=10; cellspacing="1" class="table table-striped">
+            <form action="" method="get">
+                <div class="form-row align-items-center mb-1">
+                    <div class="col-sm-3 my-1">
+                        <input type="text" class="form-control" id="inlineFormInputName" placeholder="search" name="keyword" autofocus>
+                    </div>
+                    <div class="col-auto my-1">
+                        <button type="submit" class="btn btn-primary" name="cari">Submit</button>
+                    </div>
+                </div>
+            </form>
+            <a href="tambah.php"><button class="btn btn-outline-primary mb-1">Tambah Data</button></a>
+            <a href="logout.php"><button class="btn btn-outline-danger mb-1 ml-1">Logout</button></a>
+            <tr>
+                <th>#</th>
+                <th>Opsi</th>
+                <th>Gambar</th>
+                <th>Nama</th>
+                <th>Harga</th>
+                <th>Bahan Dasar</th>
+                <th>Deskripsi</th>
+            </tr>
+            <?php if (empty($food)) : ?>
+                <tr>
+                    <td colspan="7">
+                        <h1>Data tidak ditemukan</h1>
+                    </td>
+                </tr>
+            <?php else : ?>
+                <?php $i = 1; ?>
+                <?php foreach ($food as $row) : ?>
+                    <tr>
+                        <td><?= $i; ?></td>
+                        <td> <button><a href="ubah.php?id=<?= $row['id']; ?>">Ubah</a></button> </li>
+                            <button><a href="hapus.php?id=<?= $row['id']; ?>" onclick="return confirm('hapus data?');">Hapus</a></button> </li>
+                        </td>
+                        <td><img src="../Assets/img/<?= $row['gambar'] ?>" class="img-thumbnail" width="250px"></td>
+                        <td><?= $row["nama"]; ?></td>
+                        <td><?= $row["harga"]; ?></td>
+                        <td><?= $row["bahan_dasar"]; ?></td>
+                        <td><?= $row["deskripsi"]; ?></td>
+                    </tr>
+                    <?php $i++; ?>
+                <?php endforeach; ?>
+            <?php endif ?>
+        </table>
 
-  <table align=center border="1px solid black" ; cellpadding=10; cellsapcing="7" class="p-3 mb-2 bg-light">
-    <tr bgcolor=silver>
-    <tr>
-      <th>id</th>
-      <th>Opsi</th>
-      <th>Nama</th>
-      <th>Harga</th>
-      <th>Bahan Dasar</th>
-      <th>Deskripsi</th>
-    </tr>
-    <?php if (empty($food)) : ?>
-      <tr>
-        <td colspan="7">
-          <h3>Data Tidak Di Temukan</h3>
-        </td>
-      </tr>
-    <?php else : ?>
-      <?php foreach ($food as $row) : ?>
-        <tr>
-          <td><?= $i; ?></td>
-          <td>
-            <a href="ubah.php?id=<?= $row['id']; ?>"> <button type="button" class="btn btn-outline-primary">Ubah</button></a>
-            <br>
-            <br>
-            <a href="hapus.php?id=<?= $row['id']; ?>" onclick="return confirm('Hapus Data??')"><button type="button" class="btn btn-outline-danger">Hapus</button></a>
-          </td>
-          <td><img src="../assets/img/<?= $row["Foto"]; ?>" alt=""></td>
-          <td><?= $row["nama"]; ?></td>
-          <td><?= $row["harga"]; ?></td>
-          <td><?= $row["bahan_dasar"]; ?></td>
-          <td><?= $row["Deskripsi"]; ?></td>
-        </tr>
-        <?php $i++; ?>
-      <?php endforeach; ?>
-    <?php endif; ?>
-  </table>
+    </div>
+
 </body>
 
 </html>

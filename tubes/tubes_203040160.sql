@@ -51,7 +51,7 @@ INSERT INTO `food` (`id`, `nama`, `harga`, `bahan_dasar`, `deskripsi`, `gambar`)
 (8, 'Tahu Gejrot Belimbing Wuluh', '10.000', 'Tahu', 'Tahu diberi bumbu cairan khas dan ditambah belimbing wuluh', '8.jpg'),
 (9, 'Mie Ayam', '15.000', 'Mie, Suwir Ayam', 'Mie khusus dipadukan ayam yang diberi bumbu rahasia', '9.jpg'),
 (10, 'Batagor', '12.000', 'Tahu, Pangsit', 'Batagor khas Bandung dengan bumbu kacang', '10.jpg');
-COMMIT;
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
