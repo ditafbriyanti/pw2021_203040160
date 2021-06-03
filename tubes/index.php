@@ -1,5 +1,12 @@
 <?php
 
+/* 
+Dita Febriyanti
+203040160
+Kelas D
+Pemrograman Web Jumat 13:00
+*/
+
 // menghubungkan dengan file php lainnya
 require 'php/functions.php';
 

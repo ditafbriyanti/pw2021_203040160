@@ -1,5 +1,12 @@
 <?php
 
+/* 
+Dita Febriyanti
+203040160
+Kelas D
+Pemrograman Web Jumat 13:00
+*/
+
 require 'functions.php';
 
 if (isset($_POST['register'])) {
