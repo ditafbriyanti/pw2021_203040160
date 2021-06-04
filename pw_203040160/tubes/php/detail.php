@@ -1,4 +1,12 @@
 <?php
+
+/* 
+Dita Febriyanti
+203040160
+Kelas D
+Pemrograman Web Jumat 13:00
+*/
+
 // Mengecek apakah ada id yang dikirimkan
 // jika tidak maka akan dikembalikan ke halaman index.php
 if (!isset($_GET['id'])) {

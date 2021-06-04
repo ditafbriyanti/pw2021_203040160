@@ -10,7 +10,7 @@ Pemrograman Web Jumat 13:00
 // function untuk melakukan koneksi ke database
 function koneksi()
 {
-    $conn = mysqli_connect("localhost", "root", "") or die("koneksi ke DB gagal");
+    $conn = mysqli_connect("localhost", "root", "", "pw2021_203040160") or die("koneksi ke DB gagal");
     mysqli_select_db($conn, "tubes_203040160") or die("Database Salah");
 
     return $conn;
@@ -18,8 +18,8 @@ function koneksi()
 // function untuk melakukan query ke database
 function query($sql)
 {
-    $conn = koneksi();
-    $result = mysqli_query($conn, $sql);
+    global $koneksidb;
+    $result = mysqli_query($koneksidb, $sql);
 
     $rows = [];
     while ($row = mysqli_fetch_assoc($result)) {
@@ -86,7 +86,7 @@ function upload()
 
 function tambah($data)
 {
-    $conn = koneksi();
+    global $koneksidb;
 
     // $display = htmlspecialchars($data['display']);
     $nama = htmlspecialchars($data['nama']);
@@ -105,13 +105,13 @@ function tambah($data)
             ('', '$display', '$nama', '$harga', '$bahan_dasar', '$deskripsi');
   
   ";
-    mysqli_query($conn, $query);
-    return mysqli_affected_rows($conn);
+    mysqli_query($koneksidb, $query);
+    return mysqli_affected_rows($koneksidb);
 }
 
 function hapus($id)
 {
-    $conn = koneksi();
+    global $koneksidb;
 
     // menghapus gambar difolder img
     $food = query("SELECT * FROM food WHERE id = $id")[0];
@@ -119,13 +119,13 @@ function hapus($id)
         unlink('../assets/img/' . $food['display']);
     }
 
-    mysqli_query($conn, "DELETE FROM food WHERE id = $id") or die(mysqli_error($conn));
-    return mysqli_affected_rows($conn);
+    mysqli_query($koneksidb, "DELETE FROM food WHERE id = $id") or die(mysqli_error($koneksidb));
+    return mysqli_affected_rows($koneksidb);
 }
 
 function ubah($data)
 {
-    $conn = koneksi();
+    global $koneksidb;
 
     $id = $data['id'];
     $gambar_lama = htmlspecialchars($data['gambar_lama']);
@@ -156,16 +156,16 @@ function ubah($data)
 						WHERE id = '$id'
 						";
 
-    mysqli_query($conn, $query);
-    return mysqli_affected_rows($conn);
+    mysqli_query($koneksidb, $query);
+    return mysqli_affected_rows($koneksidb);
 }
 
 function registrasi($data)
 {
-    $conn = koneksi();
+    global $koneksidb;
     $username = strtolower(stripcslashes($data['username']));
-    $password1 = mysqli_real_escape_string($conn, $data['password1']);
-    $password2 = mysqli_real_escape_string($conn, $data['password2']);
+    $password1 = mysqli_real_escape_string($koneksidb, $data['password1']);
+    $password2 = mysqli_real_escape_string($koneksidb, $data['password2']);
 
     // jika username / pw kosong
     if (empty($username) || empty($password1) || empty($password2)) {
@@ -210,8 +210,8 @@ function registrasi($data)
     $query = "INSERT INTO user
             VALUES
             (null, '$username', '$password_baru')";
-    mysqli_query($conn, $query) or die(mysqli_error($conn));
-    return mysqli_affected_rows($conn);
+    mysqli_query($koneksidb, $query) or die(mysqli_error($koneksidb));
+    return mysqli_affected_rows($koneksidb);
 }
 
 function cari($keyword)
