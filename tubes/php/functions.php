@@ -10,10 +10,10 @@ Pemrograman Web Jumat 13:00
 // function untuk melakukan koneksi ke database
 function koneksi()
 {
-    $conn = mysqli_connect("localhost", "root", "", "pw2021_203040160") or die("koneksi ke DB gagal");
-    mysqli_select_db($conn, "tubes_203040160") or die("Database Salah");
+    $koneksidb = mysqli_connect("localhost", "root", "", "pw2021_203040160") or die("koneksi ke DB gagal");
+    mysqli_select_db($koneksidb, "tubes_203040160") or die("Database Salah");
 
-    return $conn;
+    return $koneksidb;
 }
 // function untuk melakukan query ke database
 function query($sql)
